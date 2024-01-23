@@ -46,9 +46,11 @@ namespace youtube_player
             }
         }
 
-        public void CreatePlaylist(string name)
+        public Playlist CreatePlaylist(string name)
         {
-            Playlists.Add(new Playlist(name));
+            Playlist newPlaylist = new Playlist(name);
+            Playlists.Add(newPlaylist);
+            return newPlaylist;
         }
     }
 }

@@ -3,6 +3,10 @@ using Google.Apis;
 using Google.Apis.Services;
 using System.Text.Json;
 using Google.Apis.YouTube.v3.Data;
+using System.Threading.Tasks;
+using System;
+
+
 namespace youtube_player
 {
     internal class Program
@@ -10,20 +14,14 @@ namespace youtube_player
         static async Task Main(string[] args)
         {
             MusicManager mManager = new MusicManager();
-            mManager.LoadPlaylists();
-            
-            switch (Console.ReadLine())
-            {
-                case "1":
-
-                    break;
-                case "2":
-
-                    break;
-                case "0":
-
-                    break;
-
+            YoutubeInterface yt = new();
+            string videoName = Console.ReadLine() ?? "";
+            var x = await yt.GetVideoReference(videoName);
+            if (yt.ValidateResponse(x)) 
+            { 
+                string url = yt.ConvertToUrl(x.Items[0]);
+                Playlist pL = mManager.CreatePlaylist("favs");
+                Song sweaterweather = mManager.CreateSong(url, pL, String.Join("", videoName.ToCharArray().Where(x => !Char.IsWhiteSpace(x))));
             }
         }
 

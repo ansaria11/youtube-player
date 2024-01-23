@@ -19,9 +19,9 @@ namespace youtube_player
 
         private YouTubeService CreateConnection()
         {
-            return new YouTubeService(new BaseClientService.Initializer 
-            { 
-                ApiKey= key,
+            return new YouTubeService(new BaseClientService.Initializer
+            {
+                ApiKey = key,
                 ApplicationName = "Youtube Player"
             });
         }

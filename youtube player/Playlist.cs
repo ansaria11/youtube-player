@@ -9,7 +9,7 @@ namespace youtube_player
     public class Playlist
     {
         public List<Song> Songs;
-        public string name;
+        public string name { get; set; }
         private string directory;
         private const string projectFolder = "C:\\Users\\adama\\Documents\\Coding\\AudioProject\\";
 
@@ -17,7 +17,7 @@ namespace youtube_player
         {
             Songs = new List<Song>();
             this.name = name;
-            directory = projectFolder + name;
+            this.directory = projectFolder + name;
         }
 
         public void Shuffle()

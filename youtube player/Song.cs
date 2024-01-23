@@ -12,7 +12,6 @@ namespace youtube_player
     {
         private string location;
         public string name;
-        private double currentPos;
         private AudioFileReader audioFile;
         private WaveOutEvent outputDevice;
         private bool initialised = false;
@@ -20,8 +19,15 @@ namespace youtube_player
         public Song(string path, string name)
         {
             this.name = name;
-            location = path;
-            audioFile = new AudioFileReader(path);
+            try
+            {
+                location = path;
+                audioFile = new AudioFileReader(path);
+            } catch (Exception ex)
+            {
+                throw new InvalidDataException();
+            }
+            
         }
 
         public void ChangeVolume(float volume)
